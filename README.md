@@ -21,7 +21,7 @@ With these images you can chat with the models, refactor code, run shell command
 ## ✨ Features
 
 * **Ready-to-run**: each Dockerfile installs the latest CLI release in one layer.
-* **Ultra-light**: based on `node:20-slim` (\~100 MB download, \~350 MB image).
+* **Ultra-light**: based on `node:20-slim` (\~100 MB download, \~350 MB image).
 * **Volume mount–ready**: designed to bind any host folder (e.g. your NAS) to `/workspace` so the AI can read & write your files.
 * **Multi-arch roadmap**: images will soon be built for `linux/amd64` **and** `linux/arm64` via Buildx.
 * **Open-source, no vendor lock-in**: inspect, fork, PR welcome!
@@ -34,10 +34,11 @@ With these images you can chat with the models, refactor code, run shell command
 # Pull the image you need
 docker pull diablotin74/gemini-cli:latest
 
-# Run it and mount your local project
-docker run -it -v "$PWD":/workspace diablotin74/gemini-cli
-
-# First-time Google OAuth flow appears in the terminal
+# Run it (replace YOUR_KEY) and mount your local project
+docker run -it \
+  -e GEMINI_API_KEY=AIzaSyYOUR_KEY \
+  -v "$PWD":/workspace \
+  diablotin74/gemini-cli
 ```
 
 For Claude or Codex just replace the image name.
@@ -108,7 +109,7 @@ Google Gemini CLI • Anthropic Claude Code CLI • OpenAI Codex CLI
 
 <!-- ────────────────────────────────────────────────────────────────────────────── -->
 
-Un **espace de travail Docker tout-en-un** qui regroupe les trois interfaces ligne de commande LLM les plus populaires :
+Un **espace de travail Docker tout-en-un** qui regroupe les trois interfaces ligne de commande LLM les plus populaires :
 
 | CLI                 | Famille de modèle     | Base Docker    | Exemple de tag                  |
 | ------------------- | --------------------- | -------------- | ------------------------------- |
@@ -116,17 +117,17 @@ Un **espace de travail Docker tout-en-un** qui regroupe les trois interfaces lig
 | **Claude Code CLI** | Anthropic Claude 3    | `node:20-slim` | `diablotin74/claude-cli:latest` |
 | **Codex CLI**       | OpenAI Codex / GPT-4o | `node:20-slim` | `diablotin74/codex-cli:latest`  |
 
-**But : discuter, générer ou refactoriser ton code directement depuis le terminal**, sans installer Node ni dépendances sur ta machine.
+**But : discuter, générer ou refactoriser ton code directement depuis le terminal**, sans installer Node ni dépendances sur ta machine.
 
 ---
 
 ## ✨ Fonctionnalités
 
-* **Prêt à l’emploi** : chaque Dockerfile installe la dernière version de la CLI.
-* **Taille réduite** : images basées sur `node:20-slim`.
+* **Prêt à l’emploi** : chaque Dockerfile installe la dernière version de la CLI.
+* **Taille réduite** : images basées sur `node:20-slim`.
 * **Montage facile** d’un dossier hôte sur `/workspace` (NAS ou PC).
-* **Bientôt multi-architecture** (`amd64` / `arm64`) via Buildx.
-* **100 % open-source** : forke, modifie, propose des PR librement.
+* **Bientôt multi‑architecture** (`amd64` / `arm64`) via Buildx.
+* **100 % open-source** : forke, modifie, propose des PR librement.
 
 ---
 
@@ -134,7 +135,9 @@ Un **espace de travail Docker tout-en-un** qui regroupe les trois interfaces lig
 
 ```bash
 docker pull diablotin74/claude-cli:latest
-docker run -it -e ANTHROPIC_API_KEY=sk-... -v "D:/Projets":/workspace diablotin74/claude-cli
+docker run -it -e GEMINI_API_KEY=AIzaSyVOTRE_CLE \
+  -e ANTHROPIC_API_KEY=sk-... \
+  -v "D:/Projets":/workspace diablotin74/claude-cli
 ```
 
 Même principe pour `gemini-cli` et `codex-cli`.
@@ -179,7 +182,7 @@ services:
 
 ## 🤝 Contribuer
 
-Signale un bug, propose une amélioration, ou laisse une ⭐ : toute aide est appréciée !
+Signale un bug, propose une amélioration, ou laisse une ⭐ : toute aide est appréciée !
 
 ---
 
