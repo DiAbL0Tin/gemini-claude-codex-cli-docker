@@ -1,9 +1,11 @@
 name: build-and-push
 
 on:
+  push:                  # ← ajoute ces deux lignes
+    branches: [main]     #    (surveille la branche main)
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * *'   # 04:00 Paris
+    - cron: '0 2 * * *'  # 04:00 Paris, tous les jours
 
 jobs:
   build:
